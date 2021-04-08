@@ -61,7 +61,7 @@ function setupCustomElement(select) {
     // currently selected element style
     select.labelElement.classList.add('custom-select-value');
     // set tabIndex for CSS focus (focus only on tab, not click)
-    select.labelElement.tabIndex = -1;
+    select.labelElement.tabIndex = 0;
     // set the text of the label element based on the selected option element
     select.labelElement.innerText = select.selectedOption.label;
     // place inside custom-element-container
@@ -94,10 +94,24 @@ function setupCustomElement(select) {
     select.labelElement.addEventListener('click', () => {
         select.optionsCustomElement.classList.toggle('show');
     })
+
     // hide list when click off
-    select.customElement.addEventListener('blur', () => {
+    document.addEventListener("click", (evt) => {
+        const flyoutElement = select.customElement;
+        let targetElement = evt.target; // clicked element
+    
+        do {
+            if (targetElement == flyoutElement) {
+                // This is a click inside. Do nothing, just return.
+                return;
+            }
+            // Go up the DOM
+            targetElement = targetElement.parentNode;
+        } while (targetElement);
+    
+        // This is a click outside.
         select.optionsCustomElement.classList.remove('show');
-    })
+    });
 
     let debounceTimeout;
     let searchTerm = '';

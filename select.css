@@ -32,7 +32,7 @@
 
 .custom-select-container:focus,
 .custom-select-value:focus {
-    outline: none
+    outline: none;
 }
 
 /* focus only on tab, not click */
@@ -59,12 +59,15 @@
 .custom-select-option {
     padding: .25rem .5rem;
     cursor: pointer;
+    user-select: none;
 }
 
 .custom-select-option:hover {
     background-color: hsl(200, 100%, 70%);
+    color: white
 }
 
 .custom-select-option.selected {
     background-color: hsl(200, 100%, 50%);
+    color: white
 }

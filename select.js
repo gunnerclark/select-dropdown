@@ -55,11 +55,13 @@ export default class Select {
 function setupCustomElement(select) {
     // entire select element style
     select.customElement.classList.add('custom-select-container');
-    // set tabIndex for CSS focus
+    // set tabIndex for CSS focus (focus only on tab, not click)
     select.customElement.tabIndex = 0;
 
     // currently selected element style
     select.labelElement.classList.add('custom-select-value');
+    // set tabIndex for CSS focus (focus only on tab, not click)
+    select.labelElement.tabIndex = -1;
     // set the text of the label element based on the selected option element
     select.labelElement.innerText = select.selectedOption.label;
     // place inside custom-element-container
